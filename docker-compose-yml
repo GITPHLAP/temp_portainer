@@ -1,0 +1,18 @@
+version: "3"
+services:
+  samba:
+    container_name: samba
+    image: my_samba
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 445:445
+      - 139:139
+    volumes:
+      - ./smb.conf:/etc/samba/smb.conf
+      - /share/philip:/share/philip
+    environment:
+      - user_count=2
+      - userl=admin
+      - password1=1234
